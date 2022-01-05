@@ -10,13 +10,13 @@
             <span id="error_first_name" class="has-error"></span>
         </div>
         <div class="form-group col-md-10 col-sm-12">
-            <label for="tour_image">Tour Image</label>
+            <label for="tour_image">Brand Image</label>
             <input type="file" class="form-control" id="tour_image"  name="tour_image" value=""
                    placeholder="" required>
             <span id="error_first_name" class="has-error"></span>
         </div>
         <div class="form-group col-md-10 col-sm-12">
-            <label for="tour_image">Tour Image</label>
+            <label for="tour_image">status</label>
             <input type="text" class="form-control" id="status"  name="status" value=""
                    placeholder="" required>
             <span id="error_first_name" class="has-error"></span>
@@ -38,17 +38,11 @@
         $('#create').validate({// <- attach '.validate()' to your form
             // Rules for form validation
             rules: {
-                tour_image: {
-                    required: true
-                },
+
 
             },
             // Messages for form validation
             messages: {
-                tour_image: {
-                    required: 'please enter Image'
-                },
-
 
             },
             submitHandler: function (form) {
@@ -73,18 +67,18 @@
                         $("#status").html(data.html);
                         reload_table();
                         $('#loader').hide();
-                        // console.log('as');
-                        $("#submit").prop('disabled', false); // disable button
+                        $("#submit").prop('disabled', true); // disable button
                         $("html, body").animate({scrollTop: 0}, "slow");
                         $('#modalUser').modal('hide'); // hide bootstrap modal
                     },
                     error:function(error){
                         // console.log(error.responseJSON.errors);
-                    Swal.fire({
-                        text: 'Event Name already added Or file is not jpg,png,jpeg',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                        })
+                    // Swal.fire({
+                    //     text: 'Event Name already added Or file is not jpg,png,jpeg',
+                    //     icon: 'error',
+                    //     confirmButtonText: 'Ok'
+                    //     })
+                    // alert('okey');
                     }
                 });
             }
@@ -93,7 +87,7 @@
 
     });
 </script>
-<script>
+{{-- <script>
     $(function(){
       'use strict';
 
@@ -106,7 +100,7 @@
         tooltip: false
       })
     });
-  </script>
+  </script> --}}
 
 
 

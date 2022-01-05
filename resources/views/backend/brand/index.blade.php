@@ -56,10 +56,7 @@
 
                 <!-- Modal Footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default"
-                            data-dismiss="modal">
-                        Close
-                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -105,7 +102,7 @@
             $.ajax({
                 headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
                 type: 'GET',
-                url: 'tours/create',
+                url: '/tours/create',
                 success: function (data) {
                     $("#modal_data").html(data.html);
                     $('#modalUser').modal('show');

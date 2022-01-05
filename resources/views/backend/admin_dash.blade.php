@@ -7,12 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.1/sweetalert.css" integrity="sha512-fRVSQp1g2M/EqDBL+UFSams+aw2qk12Pl/REApotuUVK1qEXERk3nrCFChouag/PdDsPk387HJuetJ1HBx8qAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
     <link  href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
+
 
     <!-- Twitter -->
     <meta name="twitter:site" content="@themepixels">
@@ -46,7 +47,7 @@
     <link href="{{asset('backend')}}/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.css" integrity="sha512-89dj20t0ePIY5LVWjdFJwXKHq326wykdMXRvJ0IApshtw79sL5IURuvU5A3w/fwKW5pUZlwMer12Gg2MA/pvng==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.css" integrity="sha512-89dj20t0ePIY5LVWjdFJwXKHq326wykdMXRvJ0IApshtw79sL5IURuvU5A3w/fwKW5pUZlwMer12Gg2MA/pvng==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{asset('backend')}}/css/starlight.css">
   </head>
@@ -243,7 +244,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.1/sweetalert.min.js" integrity="sha512-bQTg0yQoJONPPP2GJpVEWYayw5y7LmCrN+VMCr3l3jl1mn8a2yjYLDBkvt4TkQCJjLaI3kprfiJ2ivEUOw63ow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">

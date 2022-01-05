@@ -7,7 +7,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Datatables;
-use View;
+use Illuminate\Support\Facades\View;
 use Intervention\Image\Facades\Image;
 
 class BrandController extends Controller
@@ -24,18 +24,25 @@ class BrandController extends Controller
 
     public function getall()
     {
-        $tours = Brand::orderBy('id','DESC')->get();
+        $tours = Brand::orderBy('id','DESC')->latest()->get();
 
-        // dd($notice);
         return datatables($tours)
 
           ->addColumn('created_at', function ($tours) {
-             return $tours->created_at->diffForHumans();
+              if($tours->created_at==null){
+                  return 'this is null';
+              }else{
+                return $tours->created_at->diffForHumans();
+              }
           })
-
           ->addColumn('updated_at', function ($tours) {
-             return $tours->updated_at->diffForHumans();
-          })
+            if($tours->updated_at==null){
+                return 'this is null';
+            }else{
+              return $tours->updated_at->diffForHumans();
+            }
+        })
+
           ->addColumn('brand_image', function ($tours) {
               $url= asset($tours->brand_image);
              return '<img src="'.$url.'" frameborder="0" width="100%" height="80px">';
@@ -93,7 +100,6 @@ class BrandController extends Controller
     public function show($id)
     {
         $tougallery =Brand::find($id);
-        dd($tougallery);
         $view = View::make('backend.brand.view', compact('tougallery'))->render();
 
         return response()->json(['html' => $view]);

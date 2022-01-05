@@ -50,9 +50,10 @@ Route::get('view-cat', 'Admin\CategoryController@view');
 
 //==============================Brand==========================================
 Route::resource('tours','Admin\BrandController');
-Route::get('brand/index','Admin\BrandController@index')->name('getall.tour');
+Route::get('brand/index','Admin\BrandController@index');
+Route::get('brand/all','Admin\BrandController@getall')->name('getall.tour');
 
-Route::get('brand/tours/create','Admin\BrandController@create');
+// Route::get('brand/tours/create','Admin\BrandController@create');
 
 
 

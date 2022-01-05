@@ -5,8 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
+    <link  href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
 
     <!-- Twitter -->
     <meta name="twitter:site" content="@themepixels">
@@ -40,7 +46,7 @@
     <link href="{{asset('backend')}}/lib/rickshaw/rickshaw.min.css" rel="stylesheet">
 
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.css" integrity="sha512-89dj20t0ePIY5LVWjdFJwXKHq326wykdMXRvJ0IApshtw79sL5IURuvU5A3w/fwKW5pUZlwMer12Gg2MA/pvng==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{asset('backend')}}/css/starlight.css">
   </head>
@@ -76,6 +82,12 @@
                     <div class="sl-menu-item">
                     <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
                     <span class="menu-item-label">Category</span>
+                    </div><!-- menu-item -->
+                </a><!-- sl-menu-link -->
+                <a href="{{url('brand/index')}}" class="sl-menu-link @yield('brand')">
+                    <div class="sl-menu-item">
+                    <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+                    <span class="menu-item-label">Brand</span>
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
 
@@ -207,9 +219,6 @@
     @endguest
     @yield('login_content')
 
-    {{-- Yajra --}}
-
-
     <script src="{{asset('backend')}}/lib/popper.js/popper.js"></script>
     <script src="{{asset('backend')}}/lib/bootstrap/bootstrap.js"></script>
     <script src="{{asset('backend')}}/lib/jquery-ui/jquery-ui.js"></script>
@@ -227,6 +236,17 @@
     <script src="{{asset('backend')}}/js/ResizeSensor.js"></script>
     <script src="{{asset('backend')}}/js/dashboard.js"></script>
 
+    {{-- Yajra --}}
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.0.1/sweetalert.min.js"></script>
+
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> --}}
   </body>
 </html>

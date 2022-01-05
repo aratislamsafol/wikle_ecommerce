@@ -48,4 +48,11 @@ Route::post('delete-company', 'Admin\CategoryController@destroy');
 // Route::get('changeStatus', 'UserController@change');
 Route::get('view-cat', 'Admin\CategoryController@view');
 
+//==============================Brand==========================================
+Route::resource('tours','Admin\BrandController');
+Route::get('brand/index','Admin\BrandController@index')->name('getall.tour');
+
+Route::get('brand/tours/create','Admin\BrandController@create');
+
+
 

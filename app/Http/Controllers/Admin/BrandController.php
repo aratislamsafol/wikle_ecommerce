@@ -48,7 +48,7 @@ class BrandController extends Controller
              return '<img src="'.$url.'" frameborder="0" width="100%" height="80px">';
          })
           ->addColumn('action', 'backend.brand.action')
-          ->rawColumns(['brand_image','backend.brand.action'])
+          ->rawColumns(['brand_image','action'])
           ->make(true);
     }
 
@@ -60,7 +60,6 @@ class BrandController extends Controller
     public function create()
     {
         $view = View::make('backend.brand.create')->render();
-
         return response()->json(['html' => $view]);
     }
 
@@ -88,7 +87,7 @@ class BrandController extends Controller
         $tours->brand_image = $notcepath;
 
         $tours->save();
-        return redirect()->back()->with('success', 'Updated Successfully');
+        return response()->json($tours);
     }
 
     /**
@@ -135,12 +134,13 @@ class BrandController extends Controller
         $tours->status=$request->status;
 
         if($request->file('tour_image')!=null){
-            unlink(public_path($tours->tour_image));
+            unlink(public_path($tours->brand_image));
             $tourimage = $request->file('tour_image');
             $name_gen =rand(100000,999999). ".".$tourimage->getClientOriginalExtension();
-            Image::make($tourimage)->resize(1024, 576 )->save( public_path('/uploads/tour/' . $name_gen));
-            $notcepath = ('/uploads/tour') . '/' .$name_gen;
-            $tours->tour_image = $notcepath;
+            $path = public_path('uploads/brand/'.$name_gen);
+            Image::make($tourimage)->resize(1024, 576 )->save($path);
+            $notcepath = 'uploads/brand/' .$name_gen;
+            $tours->brand_image = $notcepath;
         }
 
         $tours->save();
@@ -156,7 +156,7 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $tours =Brand::find($id);
-        unlink(public_path($tours->tour_image));
+        unlink(public_path($tours->brand_image));
         $tours->delete();
         return response()->json(['type' => 'success', 'message' => 'Successfully Deleted']);
     }

@@ -91,6 +91,12 @@
                     <span class="menu-item-label">Brand</span>
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
+                <a href="{{url('role/index')}}" class="sl-menu-link @yield('role')">
+                    <div class="sl-menu-item">
+                    <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
+                    <span class="menu-item-label">User Role</span>
+                    </div><!-- menu-item -->
+                </a><!-- sl-menu-link -->
 
                 {{-- <a href="#" class="sl-menu-link">
                     <div class="sl-menu-item">

@@ -1,4 +1,4 @@
-<form id='edit' action="{{ route('tours.update', $tours->id) }}" enctype="multipart/form-data" method="post" >
+<form id='edit' action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data" method="post" >
 
     <div class="box-body">
         <div id="status"></div>
@@ -11,7 +11,7 @@
             <span id="error_first_name" class="has-error"></span>
         </div> --}}
 
-        <div class="form-group col-md-10 col-sm-12">
+        {{-- <div class="form-group col-md-10 col-sm-12">
             <label for="tour_image">Brand Name</label>
             <input type="text" class="form-control" id="brand_name"  name="brand_name"
                    placeholder="" required>
@@ -33,7 +33,7 @@
             <input type="text" class="form-control" id="status"  name="status"
                    placeholder="" required>
             <span id="error_first_name" class="has-error"></span>
-        </div>
+        </div> --}}
 
 
         <div class="clearfix"></div>
@@ -69,7 +69,7 @@
                 $.ajax({
                     headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
 
-                    url: "{{ route('tours.update', $tours->id) }}",
+                    url: "{{ route('product.update', $product->id) }}",
                     type: 'post',
                     data: myData,
                     dataType: 'json',

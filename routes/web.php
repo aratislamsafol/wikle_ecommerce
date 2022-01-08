@@ -45,9 +45,9 @@ Route::get('brand/all','Admin\BrandController@getall')->name('getall.tour');
 Route::get('role/index','Admin\RoleController@index');
 
 //==============================Product==========================================
-Route::resource('tours','Admin\BrandController');
-Route::get('brand/index','Admin\BrandController@index');
-Route::get('brand/all','Admin\BrandController@getall')->name('getall.tour');
+Route::resource('product','Admin\ProdcutController');
+Route::get('product/index','Admin\ProdcutController@index');
+Route::get('product/all','Admin\ProdcutController@getall')->name('getall.product');
 
 
 

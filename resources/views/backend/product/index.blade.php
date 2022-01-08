@@ -1,5 +1,5 @@
 @extends('backend.admin_dash')
-@section('brand') active @endsection
+@section('product') active @endsection
 @section('main_content')
 
 </nav>
@@ -10,7 +10,7 @@
 
       <div class="panel-heading">
             <button class="btn btn-success" onclick="create()"><i class="glyphicon glyphicon-plus"></i>
-                New Brand Add
+                New Product Add
             </button>
 
     </div>
@@ -20,11 +20,20 @@
                 <table id="manage_all" class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>Brand Name</th>
-                        <th>Image</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Update</th>
+                        <th>Product Name</th>
+                        <th>Product Category</th>
+                        <th>Product Brand</th>
+                        <th>Product Quantity</th>
+                        <th>Product Price</th>
+                        {{-- <th>Product short description</th>
+                        <th>Product long description</th> --}}
+                        {{-- <th>Product Information</th> --}}
+                        <th>Product Image1</th>
+                        {{-- <th>Product Image2</th>
+                        <th>Product Image3</th> --}}
+                        <th>Product Status</th>
+                        <th>created_at</th>
+                        <th>updated_at</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -74,10 +83,19 @@
             table = $('#manage_all').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('getall.tour') !!}',
+                ajax: '{!! route('getall.product') !!}',
                 columns: [
-                    {data: 'brand_name', name: 'brand_name'},
-                    {data: 'brand_image', name: 'brand_image'},
+                    {data: 'product_name', name: 'product_name'},
+                    {data: 'category_id', name: 'category_id'},
+                    {data: 'brand_id', name: 'brand_id'},
+                    {data: 'product_quantity', name: 'product_quantity'},
+                    {data: 'price', name: 'price'},
+                    // {data: 'short_description', name: 'short_description'},
+                    // {data: 'long_description', name: 'long_description'},
+                    // {data: 'product_information', name: 'product_information'},
+                    {data: 'image_one', name: 'image_one'},
+                    // {data: 'image_two', name: 'image_two'},
+                    // {data: 'image_three', name: 'image_three'},
                     {data: 'status', name: 'status'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
@@ -92,16 +110,15 @@
             table.ajax.reload(null, false); //reload datatable ajax
         }
 
-
         function create() {
 
             $("#modal_data").empty();
-            $('.modal-title').text('New Brand Add'); // Set Title to Bootstrap modal title
+            $('.modal-title').text('New Product Add'); // Set Title to Bootstrap modal title
 
             $.ajax({
                 headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
                 type: 'GET',
-                url: '/tours/create',
+                url: '/product/create',
                 success: function (data) {
                     $("#modal_data").html(data.html);
                     $('#modalUser').modal('show');
@@ -121,7 +138,7 @@
             var id = $(this).attr('id');
 
             $.ajax({
-                url: '/tours/' + id + '/edit',
+                url: '/product/' + id + '/edit',
                 type: 'get',
                 success: function (data) {
                     $("#modal_data").html(data.html);
@@ -141,7 +158,7 @@
             var id = $(this).attr('id');
 
             $.ajax({
-                url: '/tours/' + id,
+                url: '/product/' + id,
                 type: 'get',
                 success: function (data) {
                     $("#modal_data").html(data.html);
@@ -172,7 +189,7 @@
                     cancelButtonText: "Cancel"
                 }, function () {
                     $.ajax({
-                        url: '/tours/' + id,
+                        url: '/product/' + id,
                         data: {"_token": CSRF_TOKEN},
                         type: 'DELETE',
                         dataType: 'json',

@@ -3,15 +3,23 @@
         <table id="view_details" class="table table-bordered table-hover">
             <tbody>
                 <thead>
-                    <th scope="col">Brand Name</th>
-                    <th scope="col">Brand Status</th>
-                    <th scope="col">Brand Image</th>
-
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Category</th>
+                    <th scope="col">Product Brand</th>
+                    <th scope="col">Product Quantity</th>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
                 </thead>
-                <tr >
-                    <td> {{($tougallery->brand_name) }}</td>
-                    <td>{{($tougallery->status) }}</td>
-                    <td> <img src="{{ asset($tougallery->brand_image) }}" frameborder="0" width="100%" height="70%"> </td>
+
+                <tr>
+                    <td>{{$product->product_name }}</td>
+                    <td>{{$product->category_id }}</td>
+                    <td>{{$product->brand_id }}</td>
+                    <td>{{$product->product_quantity }}</td>
+                    <td> <img src="{{ asset($product->image_one) }}" frameborder="0" width="100%" height="70%"> </td>
+                    <td>{{($product->price) }}</td>
+                    <td>{{($product->status) }}</td>
                 </tr>
             </tbody>
         </table>

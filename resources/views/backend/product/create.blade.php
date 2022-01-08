@@ -1,7 +1,7 @@
 <form id='create' action="" enctype="multipart/form-data" method="post"
       accept-charset="utf-8">
       @csrf
-    <div class="box-body">
+    {{-- <div class="box-body">
         <div id="status"></div>
         <div class="form-group col-md-10 col-sm-12">
             <label for="tour_image">Brand Name</label>
@@ -20,7 +20,7 @@
             <input type="text" class="form-control" id="status"  name="status" value=""
                    placeholder="" required>
             <span id="error_first_name" class="has-error"></span>
-        </div>
+        </div> --}}
 
         <div class="clearfix"></div>
         <div class="form-group col-md-12">
@@ -51,7 +51,7 @@
 
                 $.ajax({
                     headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
-                    url: "{{ route('tours.store') }}",
+                    url: "{{ route('product.store') }}",
                     type: 'POST',
                     data: myData,
                     dataType: 'json',
@@ -89,20 +89,6 @@
 
     });
 </script>
-{{-- <script>
-    $(function(){
-      'use strict';
-
-      // Inline editor
-      var editor = new MediumEditor('.editable');
-
-      // Summernote editor
-      $('#summernote').summernote({
-        height: 150,
-        tooltip: false
-      })
-    });
-  </script> --}}
 
 
 

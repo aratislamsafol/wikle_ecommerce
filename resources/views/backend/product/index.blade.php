@@ -24,15 +24,15 @@
                         <th>Product Brand</th>
                         <th>Product Quantity</th>
                         <th>Product Price</th>
-                        <th>Product short description</th>
+                        {{-- <th>Product short description</th>
                         <th>Product long description</th>
-                        <th>Product Information</th>
+                        <th>Product Information</th> --}}
                         <th>Product Image1</th>
-                        <th>Product Image2</th>
-                        <th>Product Image3</th>
+                        {{-- <th>Product Image2</th>
+                        <th>Product Image3</th> --}}
                         <th>Product Status</th>
                         <th>created_at</th>
-                        <th>updated_at</th>
+                        {{-- <th>updated_at</th> --}}
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -89,15 +89,15 @@
                     {data: 'brand_id', name: 'brand_id'},
                     {data: 'product_quantity', name: 'product_quantity'},
                     {data: 'price', name: 'price'},
-                    {data: 'short_description', name: 'short_description'},
-                    {data: 'long_description', name: 'long_description'},
-                    {data: 'product_information', name: 'product_information'},
-                    {data: 'image_one', name: 'image_one'},
-                    {data: 'image_two', name: 'image_two'},
+                    // {data: 'short_description', name: 'short_description'},
+                    // {data: 'long_description', name: 'long_description'},
+                    // {data: 'product_information', name: 'product_information'},
+                    // {data: 'image_one', name: 'image_one'},
+                    // {data: 'image_two', name: 'image_two'},
                     {data: 'image_three', name: 'image_three'},
                     {data: 'status', name: 'status'},
                     {data: 'created_at', name: 'created_at'},
-                    {data: 'updated_at', name: 'updated_at'},
+                    // {data: 'updated_at', name: 'updated_at'},
                     {data: 'action', name: 'action'}
                 ]
             });
@@ -131,22 +131,25 @@
 
         $("#manage_all").on("click", ".edit", function () {
 
-            $("#modal_data").empty();
-            $('.modal-title').text('Edit Events'); // Set Title to Bootstrap modal title
+        $("#modal_data").empty();
+        $('.modal-title').text('Edit Events'); // Set Title to Bootstrap modal title
 
-            var id = $(this).attr('id');
+        var id = $(this).attr('id');
 
-            $.ajax({
-                url: '/products/' + id + '/edit',
-                type: 'get',
-                success: function (data) {
-                    $("#modal_data").html(data.html);
-                    $('#modalUser').modal('show'); // show bootstrap modal
-                },
-                error: function (result) {
-                    $("#modal_data").html("Sorry Cannot Load Data");
-                }
-            });
+        $.ajax({
+            url: '/products/' + id + '/edit',
+            type: 'get',
+            success: function (data) {
+                $("#modal_data").html(data.html);
+                $('#modalUser').modal('show'); // show bootstrap modal
+                // $('#name').val(data.product_name);
+                // $('#name').val(data.category_id);
+                // $('#name').val(data.brand_id);
+            },
+            error: function (result) {
+                $("#modal_data").html("Sorry Cannot Load Data");
+            }
+        });
         });
 
         $("#manage_all").on("click", ".view", function () {
@@ -162,6 +165,7 @@
                 success: function (data) {
                     $("#modal_data").html(data.html);
                     $('#modalUser').modal('show'); // show bootstrap modal
+
                 },
                 error: function (result) {
                     $("#modal_data").html("Sorry Cannot Load Data");

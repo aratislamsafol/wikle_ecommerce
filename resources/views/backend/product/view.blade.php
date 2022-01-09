@@ -17,7 +17,7 @@
                     <td>{{$product->category_id }}</td>
                     <td>{{$product->brand_id }}</td>
                     <td>{{$product->product_quantity }}</td>
-                    <td> <img src="{{ asset($product->image_one) }}" frameborder="0" width="100%" height="70%"> </td>
+                    <td> <img src="{{ asset($product->image_three) }}" frameborder="0" width="100%" height="70%"> </td>
                     <td>{{($product->price) }}</td>
                     <td>{{($product->status) }}</td>
                 </tr>

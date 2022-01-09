@@ -144,7 +144,7 @@ class BrandController extends Controller
         }
 
         $tours->save();
-        return redirect()->back()->with('success', 'Updated Successfully');
+        return response()->json($tours);
     }
 
     /**

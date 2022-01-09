@@ -92,10 +92,13 @@ class ProdcutController extends Controller
             // 'tour_image3'=> 'required|mimes:jpeg,png,jpg',
         ]);
 
+        // dd($request->all());
         $products = new Product;
+
         $products->product_name=$request->product_name;
-        // $product->product_name=$request->category_id;
-        $products->product_name=$request->brand_id;
+        $products->category_id=$request->category_id;
+        $products->review_id=1;
+        $products->brand_id=$request->brand_id;
         $products->product_code=$request->product_code;
         $products->product_quantity=$request->product_quantity;
         $products->price=$request->price;
@@ -105,7 +108,6 @@ class ProdcutController extends Controller
         $products->status=$request->status;
         $products->product_slug=strtolower(str_replace(' ','-',$request->product_name));
         $products->product_code=$request->product_code;
-
 
         $toursimage = $request->file('image_one');
         $name_gen =rand(100000,999999). ".".$toursimage->getClientOriginalExtension();
@@ -168,60 +170,55 @@ class ProdcutController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $products =Product::findOrFail($id);
         $this->validate($request, [
-            'product_name' => 'required|max:100',
-            'product_code' => 'required|max:100',
-            'price' => 'required|max:100',
-            'product_quantity' => 'required|max:100',
 
-            // 'tour_image1'=> 'required|mimes:jpeg,png,jpg',
-            // 'tour_image2'=> 'required|mimes:jpeg,png,jpg',
-            // 'tour_image3'=> 'required|mimes:jpeg,png,jpg',
         ]);
 
-        $product = new Product;
-
-        $product->product_name=$request->product_name;
-        // $product->product_name=$request->category_id;
-        $product->product_name=$request->brand_id;
-        $product->product_code=$request->product_code;
-        $product->product_quantity=$request->product_quantity;
-        $product->price=$request->price;
-        $product->short_description=$request->short_description;
-        $product->long_description=$request->long_description;
-        $product->product_information=$request->product_information;
-        $product->status=$request->status;
-        $product->product_slug=strtolower(str_replace(' ','-',$request->product_name));
-        $product->product_code=$request->product_code;
+        // dd($request->all());
+        $products->product_name=$request->product_name;
+        $products->category_id=$request->category_id;
+        $products->review_id=1;
+        $products->brand_id=$request->brand_id;
+        $products->product_code=$request->product_code;
+        $products->product_quantity=$request->product_quantity;
+        $products->price=$request->price;
+        $products->short_description=$request->short_description;
+        $products->long_description=$request->long_description;
+        $products->product_information=$request->product_information;
+        $products->status=$request->status;
+        $products->product_slug=strtolower(str_replace(' ','-',$request->product_name));
+        $products->product_code=$request->product_code;
 
         if($request->file('image_one')!=null){
-            unlink(public_path($product->image_one));
-            $toursimage = $request->file('image_one');
-            $name_gen =rand(100000,999999). ".".$toursimage->getClientOriginalExtension();
-            Image::make($toursimage)->resize(1024, 576 )->save( public_path('/uploads/product/' . $name_gen));
-            $notcepath = ('/uploads/product') . '/' .$name_gen;
-            $product->image_one = $notcepath;
+            unlink(public_path($products->image_one));
+            $tourimage = $request->file('image_one');
+            $name_gen =rand(100000,999999). ".".$tourimage->getClientOriginalExtension();
+            $path = public_path('uploads/product/'.$name_gen);
+            Image::make($tourimage)->resize(1024, 576 )->save($path);
+            $notcepath = 'uploads/product/' .$name_gen;
+            $products->image_one = $notcepath;
         }
-
         if($request->file('image_two')!=null){
-            unlink(public_path($product->image_two));
-            $toursimage = $request->file('image_two');
-            $name_gen =rand(100000,999999). ".".$toursimage->getClientOriginalExtension();
-            Image::make($toursimage)->resize(1024, 576 )->save( public_path('/uploads/product/' . $name_gen));
-            $notcepath = ('/uploads/product') . '/' .$name_gen;
-            $product->image_two = $notcepath;
+            unlink(public_path($products->image_two));
+            $tourimage = $request->file('image_two');
+            $name_gen =rand(100000,999999). ".".$tourimage->getClientOriginalExtension();
+            $path = public_path('uploads/product/'.$name_gen);
+            Image::make($tourimage)->resize(1024, 576 )->save($path);
+            $notcepath = 'uploads/product/' .$name_gen;
+            $products->image_two = $notcepath;
         }
-
         if($request->file('image_three')!=null){
-            unlink(public_path($product->image_three));
-            $toursimage = $request->file('image_three');
-            $name_gen =rand(100000,999999). ".".$toursimage->getClientOriginalExtension();
-            Image::make($toursimage)->resize(1024, 576 )->save( public_path('/uploads/product/' . $name_gen));
-            $notcepath = ('/uploads/product') . '/' .$name_gen;
-            $product->image_three = $notcepath;
+            unlink(public_path($products->image_three));
+            $tourimage = $request->file('image_three');
+            $name_gen =rand(100000,999999). ".".$tourimage->getClientOriginalExtension();
+            $path = public_path('uploads/product/'.$name_gen);
+            Image::make($tourimage)->resize(1024, 576 )->save($path);
+            $notcepath = 'uploads/product/' .$name_gen;
+            $products->image_three = $notcepath;
         }
 
-        $product->save();
+        $products->save();
         return redirect()->back()->with('success', 'Updated Successfully');
     }
 

@@ -98,7 +98,7 @@
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
 
-                 <a href="{{url('product/index')}}" class="sl-menu-link @yield('product')">
+                 <a href="{{route('products.index')}}" class="sl-menu-link @yield('product')">
                     <div class="sl-menu-item">
                         <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
                         <span class="menu-item-label">Products</span>

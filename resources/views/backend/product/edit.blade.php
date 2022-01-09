@@ -1,4 +1,4 @@
-<form id='edit' action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data" method="post" >
+<form id='edit' action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data" method="post" >
 
     <div class="box-body">
         <div id="status"></div>
@@ -69,7 +69,7 @@
                 $.ajax({
                     headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
 
-                    url: "{{ route('product.update', $product->id) }}",
+                    url: "{{ route('products.update', $product->id) }}",
                     type: 'post',
                     data: myData,
                     dataType: 'json',

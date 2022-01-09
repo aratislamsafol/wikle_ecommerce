@@ -12,7 +12,6 @@
             <button class="btn btn-success" onclick="create()"><i class="glyphicon glyphicon-plus"></i>
                 New Product Add
             </button>
-
     </div>
     <div class="panel-body">
         <div class="row">
@@ -25,12 +24,12 @@
                         <th>Product Brand</th>
                         <th>Product Quantity</th>
                         <th>Product Price</th>
-                        {{-- <th>Product short description</th>
-                        <th>Product long description</th> --}}
-                        {{-- <th>Product Information</th> --}}
+                        <th>Product short description</th>
+                        <th>Product long description</th>
+                        <th>Product Information</th>
                         <th>Product Image1</th>
-                        {{-- <th>Product Image2</th>
-                        <th>Product Image3</th> --}}
+                        <th>Product Image2</th>
+                        <th>Product Image3</th>
                         <th>Product Status</th>
                         <th>created_at</th>
                         <th>updated_at</th>
@@ -90,12 +89,12 @@
                     {data: 'brand_id', name: 'brand_id'},
                     {data: 'product_quantity', name: 'product_quantity'},
                     {data: 'price', name: 'price'},
-                    // {data: 'short_description', name: 'short_description'},
-                    // {data: 'long_description', name: 'long_description'},
-                    // {data: 'product_information', name: 'product_information'},
+                    {data: 'short_description', name: 'short_description'},
+                    {data: 'long_description', name: 'long_description'},
+                    {data: 'product_information', name: 'product_information'},
                     {data: 'image_one', name: 'image_one'},
-                    // {data: 'image_two', name: 'image_two'},
-                    // {data: 'image_three', name: 'image_three'},
+                    {data: 'image_two', name: 'image_two'},
+                    {data: 'image_three', name: 'image_three'},
                     {data: 'status', name: 'status'},
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
@@ -118,7 +117,7 @@
             $.ajax({
                 headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
                 type: 'GET',
-                url: '/product/create',
+                url: 'products/create',
                 success: function (data) {
                     $("#modal_data").html(data.html);
                     $('#modalUser').modal('show');
@@ -138,7 +137,7 @@
             var id = $(this).attr('id');
 
             $.ajax({
-                url: '/product/' + id + '/edit',
+                url: '/products/' + id + '/edit',
                 type: 'get',
                 success: function (data) {
                     $("#modal_data").html(data.html);
@@ -158,7 +157,7 @@
             var id = $(this).attr('id');
 
             $.ajax({
-                url: '/product/' + id,
+                url: '/products/' + id,
                 type: 'get',
                 success: function (data) {
                     $("#modal_data").html(data.html);
@@ -189,7 +188,7 @@
                     cancelButtonText: "Cancel"
                 }, function () {
                     $.ajax({
-                        url: '/product/' + id,
+                        url: '/products/' + id,
                         data: {"_token": CSRF_TOKEN},
                         type: 'DELETE',
                         dataType: 'json',

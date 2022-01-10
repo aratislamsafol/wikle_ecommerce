@@ -48,5 +48,14 @@ Route::get('role/index','Admin\RoleController@index');
 Route::resource('products','Admin\ProdcutController');
 Route::get('product/all','Admin\ProdcutController@getall')->name('getall.product');
 
+//==============================Coupon==========================================
+Route::resource('coupons','Admin\CouponController');
+Route::get('coupon/all','Admin\CouponController@getall')->name('getall.coupon');
+// Route::get('coupon/active','Admin\CouponController@active')->name('active.coupon');
+Route::post('edit-coupon', 'Admin\CouponController@active');
+Route::post('store-company', 'Admin\CouponController@store_active');
+
+
+
 
 

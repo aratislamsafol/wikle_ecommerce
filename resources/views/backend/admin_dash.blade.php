@@ -105,6 +105,13 @@
                         {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
+                <a href="{{route('coupons.index')}}" class="sl-menu-link @yield('coupon')">
+                    <div class="sl-menu-item">
+                        <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
+                        <span class="menu-item-label">Coupons</span>
+                        {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
+                    </div><!-- menu-item -->
+                </a><!-- sl-menu-link -->
                 {{-- <ul class="sl-menu-sub nav flex-column">
                     <li class="nav-item"><a href="form-elements.html" class="nav-link">Form Elements</a></li>
                     <li class="nav-item"><a href="form-layouts.html" class="nav-link">Form Layouts</a></li>

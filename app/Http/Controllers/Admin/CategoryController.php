@@ -62,7 +62,6 @@ class CategoryController extends Controller
                     'category_name' => $request->name,
                     'status' => $request->status,
                     ]);
-
         return Response()->json($company);
     }
 

@@ -111,19 +111,19 @@ class ProdcutController extends Controller
 
         $toursimage = $request->file('image_one');
         $name_gen =rand(100000,999999). ".".$toursimage->getClientOriginalExtension();
-        Image::make($toursimage)->resize(1024, 576 )->save( public_path('/uploads/product/' . $name_gen));
+        Image::make($toursimage)->resize(400, 400 )->save( public_path('/uploads/product/' . $name_gen));
         $notcepath = ('/uploads/product') . '/' .$name_gen;
         $products->image_one = $notcepath;
 
         $toursimage = $request->file('image_two');
         $name_gen =rand(100000,999999). ".".$toursimage->getClientOriginalExtension();
-        Image::make($toursimage)->resize(1024, 576 )->save( public_path('/uploads/product/' . $name_gen));
+        Image::make($toursimage)->resize(400, 400 )->save( public_path('/uploads/product/' . $name_gen));
         $notcepath = ('/uploads/product') . '/' .$name_gen;
         $products->image_two = $notcepath;
 
         $toursimage = $request->file('image_three');
         $name_gen =rand(100000,999999). ".".$toursimage->getClientOriginalExtension();
-        Image::make($toursimage)->resize(1024, 576 )->save( public_path('/uploads/product/' . $name_gen));
+        Image::make($toursimage)->resize(400, 400 )->save( public_path('/uploads/product/' . $name_gen));
         $notcepath = ('/uploads/product') . '/' .$name_gen;
         $products->image_three = $notcepath;
 
@@ -195,7 +195,7 @@ class ProdcutController extends Controller
             $tourimage = $request->file('image_one');
             $name_gen =rand(100000,999999). ".".$tourimage->getClientOriginalExtension();
             $path = public_path('uploads/product/'.$name_gen);
-            Image::make($tourimage)->resize(1024, 576 )->save($path);
+            Image::make($tourimage)->resize(400, 400 )->save($path);
             $notcepath = 'uploads/product/' .$name_gen;
             $products->image_one = $notcepath;
         }
@@ -204,7 +204,7 @@ class ProdcutController extends Controller
             $tourimage = $request->file('image_two');
             $name_gen =rand(100000,999999). ".".$tourimage->getClientOriginalExtension();
             $path = public_path('uploads/product/'.$name_gen);
-            Image::make($tourimage)->resize(1024, 576 )->save($path);
+            Image::make($tourimage)->resize(400, 400 )->save($path);
             $notcepath = 'uploads/product/' .$name_gen;
             $products->image_two = $notcepath;
         }
@@ -213,7 +213,7 @@ class ProdcutController extends Controller
             $tourimage = $request->file('image_three');
             $name_gen =rand(100000,999999). ".".$tourimage->getClientOriginalExtension();
             $path = public_path('uploads/product/'.$name_gen);
-            Image::make($tourimage)->resize(1024, 576 )->save($path);
+            Image::make($tourimage)->resize(400, 400 )->save($path);
             $notcepath = 'uploads/product/' .$name_gen;
             $products->image_three = $notcepath;
         }

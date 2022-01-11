@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\CategoryController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/','User\UserController@Index');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -26,6 +28,7 @@ Route::group(['prefix'=>'user' ,'middleware'=>['user','auth'] , 'namespace'=>'us
     Route::get('dashboard','UserController@Index')->name('user.dashboard');
 });
 Route::get('logout','Admin\AdminController@Logout')->name('logout');
+Route::get('logout','User\UserController@Logout')->name('logout');
 
 // BACKEND (ADMIN PANEL)
 
@@ -55,6 +58,15 @@ Route::get('coupon/all','Admin\CouponController@getall')->name('getall.coupon');
 Route::post('edit-coupon', 'Admin\CouponController@active');
 Route::post('store-company', 'Admin\CouponController@store_active');
 
+
+// ================================================== Fontend =================================================
+// User Controller  ---> category
+Route::get('category/page','User\UserController@CategoryPage')->name('category.page');
+
+// User Controller  ---> Product
+Route::group(['prefix'=>'product'],function(){
+    Route::get('item/details/{id}','User\UserController@SinglePage');
+});
 
 
 

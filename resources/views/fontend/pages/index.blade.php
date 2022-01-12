@@ -67,8 +67,13 @@
                         <div class="product-f-image">
                             <img src="{{asset($pro->image_one)}}" alt="">
                             <div class="product-hover">
-                                <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                <form action="{{url('cart/add/item/'.$pro->id)}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="price" value="{{$pro->price}}">
+                                    <button type="submit" class="add-to-cart-link bb"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                                </form>
+
+                                <a href="{{url('product/item/details/'.$pro->id)}}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                             </div>
                         </div>
 

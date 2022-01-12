@@ -115,7 +115,7 @@
                         <li class="@yield('index')"><a href="{{url('/')}}">Home</a></li>
                         <li><a href="shop.html">Shop page</a></li>
                         {{-- <li><a class="@yield('product_details')" href="{{route('product.details')}}">Single product</a></li> --}}
-                        <li><a href="cart.html">Cart</a></li>
+                        <li><a class="@yield('cart')" href="{{route('cart.page')}}">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>
                         <li><a class="@yield('category')" href="{{route('category.page')}}">Category</a></li>
                         <li><a href="#">Others</a></li>

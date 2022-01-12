@@ -68,6 +68,12 @@ Route::group(['prefix'=>'product'],function(){
     Route::get('item/details/{id}','User\UserController@SinglePage');
 });
 
+// User Controller  ---> Cart
+Route::group(['prefix'=>'cart'],function(){
+    Route::get('item/details','User\CartController@index')->name('cart.page');
+    Route::post('add/item/{id}','User\CartController@AddCart');
+});
+
 
 
 

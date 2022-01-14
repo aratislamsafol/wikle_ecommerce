@@ -51,9 +51,9 @@
           <button class="btn btn-google btn-danger ms-2 col">
             <i class="fa fa-google-plus"></i> Google plus </button>
         </div>
-        <p class="sign-up">Don't have an Account?<a href="#"> Sign Up</a></p>
+        <p class="sign-up">Don't have an Account?<a href="{{route('register')}}"> Sign Up</a></p>
       </form>
-      <button type="submit" class="btn btn-info btn-block">Sign In</button>
+
 
     </div><!-- login-wrapper -->
   </div><!-- d-flex -->

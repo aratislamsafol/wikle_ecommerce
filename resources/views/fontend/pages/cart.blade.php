@@ -82,35 +82,49 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($carts as $cart)
+
                                         <tr class="cart_item">
+
                                             <td class="product-remove">
-                                                <a title="Remove this item" class="remove" href="#">×</a>
+                                                <a href="{{url('cart/destroy/'.$cart->id)}}" title="Remove this item" class="remove" href="#">×</a>
                                             </td>
 
                                             <td class="product-thumbnail">
-                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
+                                                <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{{asset($cart->product->image_one)}}"></a>
                                             </td>
 
                                             <td class="product-name">
-                                                <a href="single-product.html">Ship Your Idea</a>
+                                                <a href="">{{$cart->product->product_name}}</a>
                                             </td>
 
                                             <td class="product-price">
-                                                <span class="amount">£15.00</span>
+                                                <span class="amount">{{$cart->product->price}}tk</span>
                                             </td>
 
                                             <td class="product-quantity">
+
                                                 <div class="quantity buttons_added">
-                                                    <input type="button" class="minus" value="-">
-                                                    <input type="number" size="4" class="input-text qty text" title="Qty" value="1" min="0" step="1">
-                                                    <input type="button" class="plus" value="+">
+                                                    <form action="{{url('cart/quantity/update/'.$cart->id)}}" method="POST">
+                                                        @csrf
+
+                                                    <input type="number" size="4" class="input-text qty text"  step="1" min='1' id="submit" value={{$cart->product_qty}} name="product_qty">
+
+                                                    {{-- <input type="button" class="minus" value="-"> --}}
+
+                                                    {{-- <input type="button" class="plus" value="+"> --}}
+                                                    <button type="submit" class="btn btn-sm">Update</button>
+                                                </form>
                                                 </div>
+
+
                                             </td>
 
                                             <td class="product-subtotal">
-                                                <span class="amount">£15.00</span>
+                                                <span class="amount">{{$cart->price * $cart->product_qty}}tk</span>
                                             </td>
                                         </tr>
+                                        @endforeach
                                         <tr>
                                             <td class="actions" colspan="6">
                                                 <div class="coupon">
@@ -118,8 +132,9 @@
                                                     <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
                                                     <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
                                                 </div>
-                                                <input type="submit" value="Update Cart" name="update_cart" class="button">
+                                                <button type="submit">update cart</button>
                                                 <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+
                                             </td>
                                         </tr>
                                     </tbody>
@@ -132,25 +147,32 @@
                             <div class="cross-sells">
                                 <h2>You may be interested in...</h2>
                                 <ul class="products">
+
+                                    {{-- @php
+                                        $cart_data=App\Cart::where('user_ip',request()->ip())->get();
+
+                                        $product=App\Product::where('status',1)->where('id',$cart_data->product_id)->latest()->get();
+
+                                        $show_data=App\Category::where('status',1)->where('id',$product->category_id)->latest()->get();
+
+                                        // $product_data=App\Product::where('category_id',$show_data->id)->latest()->get();
+                                    @endphp
+
+                                    @foreach ($show_data as $sd)
+
+                                    {{asset($sd->product->image_one)}}
+                                    {{$sd->product->product_name}}--}}
+                                    {{-- @foreach ($carts->product->category->product->product_name as $sd) --}}
                                     <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
-                                            <h3>Ship Your Idea</h3>
+                                        <a href="">
+                                            <img src="" width="" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
+                                            <h3>sdff</h3>
                                             <span class="price"><span class="amount">£20.00</span></span>
                                         </a>
 
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
+                                        {{-- <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a> --}}
                                     </li>
-
-                                    <li class="product">
-                                        <a href="single-product.html">
-                                            <img width="325" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-4.jpg">
-                                            <h3>Ship Your Idea</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
-                                        </a>
-
-                                        <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a>
-                                    </li>
+                                    {{-- @endforeach --}}
                                 </ul>
                             </div>
 
@@ -162,7 +184,7 @@
                                     <tbody>
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
-                                            <td><span class="amount">£15.00</span></td>
+                                            <td><span class="amount">{{$sub_total}}tk</span></td>
                                         </tr>
 
                                         <tr class="shipping">

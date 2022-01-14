@@ -72,7 +72,12 @@ Route::group(['prefix'=>'product'],function(){
 Route::group(['prefix'=>'cart'],function(){
     Route::get('item/details','User\CartController@index')->name('cart.page');
     Route::post('add/item/{id}','User\CartController@AddCart');
+    Route::get('destroy/{id}','User\CartController@Remove');
+    Route::post('quantity/update/{id}','User\CartController@UpdateCart');
+    // Route::get('item/details/{id}','User\CartController@RelatedProduct');
+
 });
+
 
 
 

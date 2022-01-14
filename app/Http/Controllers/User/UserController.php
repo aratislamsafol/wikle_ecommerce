@@ -27,8 +27,9 @@ class UserController extends Controller
     public function SinglePage($product_id){
         $product_details=Product::where('status',1)->latest()->get();
         $pro_get=Product::findOrFail($product_id);
+        $related_pro=Product::where('category_id',$pro_get->category_id)->where('id','!=',$product_id)->latest()->get();
 
-        return view('fontend.pages.single_product',compact('product_details','pro_get'));
+        return view('fontend.pages.single_product',compact('product_details','pro_get','related_pro'));
     }
 
 

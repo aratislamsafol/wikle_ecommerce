@@ -13,4 +13,8 @@ class Cart extends Model
     public function product(){
         return $this->hasOne(Product::class,'id','product_id');
     }
+
+    // public function category(){
+    //     return $this->hasMany('App\Category');
+    // }
 }

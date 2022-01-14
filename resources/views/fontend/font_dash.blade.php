@@ -49,7 +49,7 @@
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                            <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
+                            <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
@@ -81,6 +81,22 @@
         </div>
     </div> <!-- End header area -->
 
+    @if (session('success'))
+    'success';
+    {{-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{session('success')}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> --}}
+    @endif
+
+    @if (session('fail'))
+    'fail';
+    {{-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{session('success')}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> --}}
+    @endif
+
     <div class="site-branding-area">
         <div class="container">
             <div class="row">
@@ -92,12 +108,22 @@
 
                 <div class="col-sm-6">
                     <div class="shopping-item">
-                        <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                        @php
+                            $total=App\Cart::all()->where('user_ip',request()->ip())->sum(function($res){
+                                return $res->product_qty * $res->price;
+                            });
+
+                            $quantity=App\Cart::all()->where('user_ip',request()->ip())->sum('product_qty');
+                        @endphp
+                        <a href="{{route('cart.page')}}">Cart - <span class="cart-amunt"</span> <i class="fa fa-shopping-cart">{{$total}}tk</i> <span class="product-count">{{$quantity}}</span></a>
                     </div>
+
                 </div>
             </div>
         </div>
     </div> <!-- End site branding area -->
+
+
 
     <div class="mainmenu-area">
         <div class="container">
@@ -232,6 +258,19 @@
     <script src="{{asset('frontend')}}/jquery-ui.min.js"></script>
     <script src="{{asset('frontend')}}/jquery.slicknav.js"></script>
     <script src="{{asset('frontend')}}/mixitup.min.js"></script>
+
+    <script>
+        var toastTrigger = document.getElementById('liveToastBtn')
+    var toastLiveExample = document.getElementById('liveToast')
+    if (toastTrigger) {
+      toastTrigger.addEventListener('click', function () {
+        var toast = new bootstrap.Toast(toastLiveExample)
+
+        toast.show()
+      })
+    }
+    </script>
+
     <!-- Slider -->
     <script type="text/javascript" src="{{asset('frontend')}}/js/bxslider.min.js"></script>
 	<script type="text/javascript" src="{{asset('frontend')}}/js/script.slider.js"></script>

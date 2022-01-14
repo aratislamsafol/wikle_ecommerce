@@ -4,16 +4,21 @@ namespace App\Http\Controllers\User;
 
 use App\Cart;
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
     public function index(){
-        return view('fontend.pages.cart');
+        $carts = Cart::where('user_ip', request()->ip())->latest()->get();
+        $sub_total = Cart::all()->where('user_ip', request()->ip())->sum(function ($res) {
+            return $res->product_qty * $res->price;
+        });
+        return view('fontend.pages.cart',compact('carts','sub_total'));
     }
 
     public function AddCart(Request $request,$id){
-        $check=Cart::where('product_id',$id)->first();
+        $check=Cart::where('product_id',$id)->where('user_ip',request()->ip())->first();
         if($check){
             Cart::where('product_id',$id)->increment('product_qty');
             return Redirect()->back()->with('success', 'Product Added');
@@ -27,4 +32,20 @@ class CartController extends Controller
             return Redirect()->back()->with('success', 'Product Added');
         }
     }
+
+    public function Remove($id)
+    {
+        Cart::where('user_ip', request()->ip())->find($id)->delete();
+        return Redirect()->back();
+    }
+
+    public function UpdateCart(Request $request, $id)
+    {
+        Cart::where('id', $id)->where('user_ip', request()->ip())->Update([
+            'product_qty' => $request->product_qty,
+        ]);
+        return Redirect()->back();
+    }
+
+
 }

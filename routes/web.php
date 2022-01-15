@@ -19,8 +19,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // ============================= Multiple Authentication ======================================
-
-Route::group(['prefix'=>'admin' ,'middleware'=>['admin','auth'] , 'namespace'=>'admin'],function(){
+// 'middleware'=>['admin','auth'] ,
+Route::group(['prefix'=>'admin' , 'namespace'=>'admin'],function(){
     Route::get('dashboard','AdminController@Index')->name('admin.dashboard');
 });
 
@@ -78,7 +78,19 @@ Route::group(['prefix'=>'cart'],function(){
 
 });
 
+// ============================= Division ======================================
+Route::get('division_datatable', 'Admin\DivisionController@index');
+Route::post('store-division', 'Admin\DivisionController@store');
+Route::post('edit-division', 'Admin\DivisionController@edit');
+Route::post('delete-division', 'Admin\DivisionController@destroy');
+Route::get('view-division', 'Admin\DivisionController@view');
 
+// ============================= Distric ======================================
+Route::get('district_datatable', 'Admin\DistricController@index');
+Route::post('store-distric', 'Admin\DistricController@store');
+Route::post('edit-distric', 'Admin\DistricController@edit');
+Route::post('delete-district', 'Admin\DistricController@destroy');
+Route::get('view-distric', 'Admin\DistricController@view');
 
 
 

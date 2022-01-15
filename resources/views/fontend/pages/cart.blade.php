@@ -163,11 +163,12 @@
                                     {{asset($sd->product->image_one)}}
                                     {{$sd->product->product_name}}--}}
                                     {{-- @foreach ($carts->product->category->product->product_name as $sd) --}}
+
                                     <li class="product">
                                         <a href="">
                                             <img src="" width="" height="325" alt="T_4_front" class="attachment-shop_catalog wp-post-image" src="img/product-2.jpg">
                                             <h3>sdff</h3>
-                                            <span class="price"><span class="amount">£20.00</span></span>
+                                            <span class="price"><span class="amount">12</span></span>
                                         </a>
 
                                         {{-- <a class="add_to_cart_button" data-quantity="1" data-product_sku="" data-product_id="22" rel="nofollow" href="single-product.html">Select options</a> --}}

@@ -52,8 +52,8 @@
   </head>
 
   <body>
-    @guest
-    @else
+    {{-- @guest
+    @else --}}
     <!-- ########## START: LEFT PANEL ########## -->
     <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> starlight</a></div>
         <div class="sl-sideleft">
@@ -104,10 +104,27 @@
                         {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
+
                 <a href="{{route('coupons.index')}}" class="sl-menu-link @yield('coupon')">
                     <div class="sl-menu-item">
                         <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
                         <span class="menu-item-label">Coupons</span>
+                        {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
+                    </div><!-- menu-item -->
+                </a><!-- sl-menu-link -->
+
+                <a href="{{url('division_datatable')}}" class="sl-menu-link @yield('division')">
+                    <div class="sl-menu-item">
+                        <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
+                        <span class="menu-item-label">Division</span>
+                        {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
+                    </div><!-- menu-item -->
+                </a><!-- sl-menu-link -->
+
+                <a href="{{url('district_datatable')}}" class="sl-menu-link @yield('district')">
+                    <div class="sl-menu-item">
+                        <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
+                        <span class="menu-item-label">Distric</span>
                         {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
                     </div><!-- menu-item -->
                 </a><!-- sl-menu-link -->
@@ -227,7 +244,7 @@
             <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Starlight</a> --}}
             @yield('main_content')
     <!-- ########## END: MAIN PANEL ########## -->
-    @endguest
+    {{-- @endguest --}}
     @yield('login_content')
 
     <script src="{{asset('backend')}}/lib/popper.js/popper.js"></script>

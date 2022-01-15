@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\District;
+use App\Division;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -42,6 +44,20 @@ class RegisterController extends Controller
     }
 
     /**
+     * @override
+     * Show registrationform override
+     * Compact Distric & Divison for Registration Page
+     *
+     *
+     */
+    public function showRegistrationForm()
+    {
+        $districts = District::orderBy('district_name', 'asc')->get();
+        $divisions = Division::orderBy('priority', 'asc')->get();
+        return view('auth.register',compact('districts','divisions'));
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -50,9 +66,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'f_name' => ['required', 'string', 'max:50'],
+            'l_name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone_number' => ['required', 'max:15'],
+            'division_id' => ['required','numeric'],
+            'distric_id' => ['required','numeric'],
+            'street_address' => ['required', 'max:100'],
         ]);
     }
 
@@ -64,9 +84,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // $faker = Faker::create();
         return User::create([
-            'name' => $data['name'],
+            'f_name' => $data['f_name'],
+            'l_name' => $data['l_name'],
+            'username'=>($data['l_name'].rand(1,300)),
+            'phone_number' => $data['phone_number'],
             'email' => $data['email'],
+            'street_address' => $data['street_address'],
+            'division_id' => $data['division_id'],
+            'district_id' => $data['distric_id'],
+            'ip_address' =>request()->ip(),
             'role_id' => 2,
             'password' => Hash::make($data['password']),
         ]);

@@ -7,9 +7,13 @@ use App\Division;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use DB;
 
 class RegisterController extends Controller
 {
@@ -56,6 +60,7 @@ class RegisterController extends Controller
         $divisions = Division::orderBy('priority', 'asc')->get();
         return view('auth.register',compact('districts','divisions'));
     }
+
 
     /**
      * Get a validator for an incoming registration request.

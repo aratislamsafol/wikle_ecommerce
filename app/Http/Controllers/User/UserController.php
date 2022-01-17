@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Brand;
 use App\Category;
+
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
@@ -31,7 +32,6 @@ class UserController extends Controller
 
         return view('fontend.pages.single_product',compact('product_details','pro_get','related_pro'));
     }
-
 
 
     // public function

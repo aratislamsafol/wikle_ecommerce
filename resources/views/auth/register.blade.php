@@ -69,66 +69,26 @@
 
                         <div class="form-group row">
                             <label for="division_id" class="col-md-4 col-form-label text-md-right">Division</label>
-
                             <div class="col-md-6">
-                                @php
-                                    $divisions = App\Division::orderBy('priority', 'asc')->get();
-                                @endphp
-                              <select class="form-control" name="division_id">
+                                <select class="form-control" name="division_id" id="division_id">
 
-                                <option value="">Please select your division</option>
-                                @foreach ($divisions as $division)
-                                  <option value="{{ $division->id }}">{{ $division->division_name }}</option>
-                                @endforeach
-                              </select>
+                                    <option value="">Please select your division</option>
+                                    @foreach ($divisions as $division)
+                                    <option value="{{ $division->id }}">{{ $division->division_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                          </div>
+                        </div>
 
-                          <div class="form-group row">
-                            <label for="distric_id" class="col-md-4 col-form-label text-md-right">Division</label>
-
+                        <div class="form-group row">
+                            <label for="distric_id" class="col-md-4 col-form-label text-md-right">District</label>
                             <div class="col-md-6">
-                                @php
-                                    $districts = App\District::orderBy('district_name', 'asc')->get();
-                                @endphp
-                              <select class="form-control" name="distric_id">
+                                <select class="form-control" name="distric_id" id="district-area">
 
-                                <option value="">Please select your district</option>
-                                @foreach ($districts as $district)
-                                  <option value="{{ $district->id }}">{{ $district->district_name }}</option>
-                                @endforeach
-                              </select>
+                                </select>
                             </div>
-                          </div>
+                        </div>
 
-
-
-
-                        {{-- <div class="form-group row">
-                            <label for="distric" class="col-md-4 col-form-label text-md-right">{{ __(' District') }}</label>
-
-
-                            <select class="form-control" name="division_id">
-                            <option value="">Please select a division for the district</option>
-
-                            @foreach ($divisions as $division)
-                                <option value="{{ $division->id }}" id="division_id">{{ $division->division_name }}</option>
-                            @endforeach
-                            </select>
-
-                            <div class="col-md-6">
-                                @php
-                                    $divisions = App\Division::orderBy('priority', 'asc')->get();
-                                @endphp
-                                <input id="street_address" type="text" class="form-control @error('street_address') is-invalid @enderror" name="street_address" value="{{ old('street_address') }}" required autocomplete="street_address">
-
-                                @error('street_address')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> --}}
 
                         <div class="form-group row">
                             <label for="street_address" class="col-md-4 col-form-label text-md-right">{{ __('Street Address') }}</label>
@@ -179,4 +139,38 @@
         </div>
     </div>
 </div>
+
+<script src="{{asset('frontend')}}/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+ $(document).ready(function()
+{
+    $("#division_id").change(function(){
+        var division = $("#division_id").val();
+        // Send an ajax request to server with this division
+        $("#district-area").html("");
+        var option = "";
+
+        $.get( "http://127.0.0.1:8000/get-districts/"+division, function( data ) {
+
+            data = JSON.parse(data);
+            data.forEach( function(element) {
+              option += "<option value='"+ element.id +"'>"+ element.district_name +"</option>";
+            });
+
+          $("#district-area").html(option);
+
+        });
+    })
+})
+
+
+</script>
+
 @endsection
+
+
+
+
+
+
+

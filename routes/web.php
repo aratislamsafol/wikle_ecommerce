@@ -93,4 +93,9 @@ Route::post('delete-district', 'Admin\DistricController@destroy');
 Route::get('view-distric', 'Admin\DistricController@view');
 
 
+// API routes
+Route::get('get-districts/{id}', function($id){
+    return json_encode(App\District::where('division_id', $id)->get());
+});
+
 

@@ -52,8 +52,8 @@
   </head>
 
   <body>
-    {{-- @guest
-    @else --}}
+    @guest
+    @else
     <!-- ########## START: LEFT PANEL ########## -->
     <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> starlight</a></div>
         <div class="sl-sideleft">
@@ -244,7 +244,7 @@
             <a class="breadcrumb-item" href="{{route('admin.dashboard')}}">Starlight</a> --}}
             @yield('main_content')
     <!-- ########## END: MAIN PANEL ########## -->
-    {{-- @endguest --}}
+    @endguest
     @yield('login_content')
 
     <script src="{{asset('backend')}}/lib/popper.js/popper.js"></script>
@@ -263,6 +263,8 @@
     <script src="{{asset('backend')}}/js/starlight.js"></script>
     <script src="{{asset('backend')}}/js/ResizeSensor.js"></script>
     <script src="{{asset('backend')}}/js/dashboard.js"></script>
+
+    
 
     {{-- Yajra --}}
 

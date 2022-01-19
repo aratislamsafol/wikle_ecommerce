@@ -80,12 +80,25 @@
                                     <ins>price: {{$pro_get->price}}tk</ins>
                                 </div>
 
-                                <form action="" class="cart">
+
+                                <div class="quantity buttons_added">
+                                    <form action="{{url('cart/add/item/'.$pro_get->id)}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="price" value="{{$pro_get->price}}">
+                                        <input type="number" min='1'  name="qty" value="">
+
+                                        {{-- <button type="button" class="add-to-cart-link bb" onclick="addToCart({{ $product->id }})"><i class="fa fa-plus"></i> Add to cart</button> --}}
+
+                                        <button type="submit" class="add-to-cart-link bb"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                                    </form>
+                                </div>
+
+                                {{-- <form action="{{url('cart/add/item/'.$pro_get->id)}}" method="post">
                                     <div class="quantity">
                                         <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                     </div>
                                     <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                </form>
+                                </form> --}}
 
                                 <div class="product-inner-category">
                                     <p>Category: <a href="">{{$pro_get->category->category_name}}</a>. Brand: <a href="">{{$pro_get->brand->brand_name}}</a> </p>

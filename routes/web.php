@@ -73,10 +73,20 @@ Route::group(['prefix'=>'cart'],function(){
     Route::get('item/details','User\CartController@index')->name('cart.page');
     Route::post('add/item/{id}','User\CartController@AddCart');
     Route::get('destroy/{id}','User\CartController@Remove');
-    Route::post('quantity/update/{id}','User\CartController@UpdateCart');
+    Route::post('quantitydfs/update/{id}','User\CartController@UpdateCart')->name('carts.update');
+    // Route::post('add/item/cart/single/{id}','User\CartController@AddCartSinglePage');
     // Route::get('item/details/{id}','User\CartController@RelatedProduct');
 
 });
+
+// // Cart Routes
+// Route::group(['prefix' => 'carts'], function(){
+//     Route::get('/', 'Frontend\CartsController@index')->name('carts');
+//     Route::post('/store', 'Frontend\CartsController@store')->name('carts.store');
+//     Route::post('/update/{id}', 'Frontend\CartsController@update')->name('carts.update');
+//     Route::post('/delete/{id}', 'Frontend\CartsController@destroy')->name('carts.delete');
+//   });
+
 
 // ============================= Division ======================================
 Route::get('division_datatable', 'Admin\DivisionController@index');
@@ -97,5 +107,12 @@ Route::get('view-distric', 'Admin\DistricController@view');
 Route::get('get-districts/{id}', function($id){
     return json_encode(App\District::where('division_id', $id)->get());
 });
+
+// Coupon Apply
+Route::get('coupon/name','User\CouponController@ApplyCoupon')->name('coupon.add');
+Route::get('coupon/destroy','User\CouponController@CouponDestroy')->name('coupon.destroy');
+
+// WishList
+Route::get('')->name('add.wishlist');
 
 

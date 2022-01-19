@@ -43,7 +43,7 @@
                             <div class="featured__item__pic set-bg ex" data-setbg="{{asset($product->image_one)}}">
                                 <ul class="featured__item__pic__hover">
                                     <li><a href="{{url('product/add/wishlist/'.$product->id)}}"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href=""><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="{{route('add.wishlist',$product->id)}}"><i class="fa fa-retweet"></i></a></li>
                                     <form action="{{ url('product/shopping/cart/add/'.$product->id)}}" method="post">
                                         @csrf
                                         <input type="hidden" name="price" value="{{$product->price}}">

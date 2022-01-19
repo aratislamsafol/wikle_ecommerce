@@ -70,6 +70,9 @@
                                 <form action="{{url('cart/add/item/'.$pro->id)}}" method="post">
                                     @csrf
                                     <input type="hidden" name="price" value="{{$pro->price}}">
+
+                                    {{-- <button type="button" class="add-to-cart-link bb" onclick="addToCart({{ $product->id }})"><i class="fa fa-plus"></i> Add to cart</button> --}}
+
                                     <button type="submit" class="add-to-cart-link bb"><i class="fa fa-shopping-cart"></i> Add to cart</button>
                                 </form>
 

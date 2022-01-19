@@ -18,6 +18,7 @@ class CartController extends Controller
     }
 
     public function AddCart(Request $request,$id){
+
         $check=Cart::where('product_id',$id)->where('user_ip',request()->ip())->first();
         if($check){
             Cart::where('product_id',$id)->increment('product_qty');
@@ -25,7 +26,7 @@ class CartController extends Controller
         }else{
             Cart::insert([
                 'product_id'=>$id,
-                'product_qty'=>1,
+                'product_qty'=>$request->qty,
                 'price'=>$request->price,
                 'user_ip'=>request()->ip(),
             ]);
@@ -33,19 +34,38 @@ class CartController extends Controller
         }
     }
 
+    // public function AddCartSinglePage(Request $request,$id){
+    //     $check=Cart::where('product_id',$id)->where('user_ip',request()->ip())->first();
+    //     if($check){
+    //         Cart::where('product_id',$id)->increment('product_qty');
+    //         return Redirect()->back()->with('success', 'Product Added');
+    //     }else{
+    //         Cart::insert([
+    //             'product_id'=>$id,
+    //             'product_qty'=>1,
+    //             'price'=>$request->price,
+    //             'user_ip'=>request()->ip(),
+    //         ]);
+    //         return Redirect()->back()->with('success', 'Product Added');
+    //     }
+    // }
+
+
     public function Remove($id)
     {
         Cart::where('user_ip', request()->ip())->find($id)->delete();
         return Redirect()->back();
     }
 
-    public function UpdateCart(Request $request, $id)
+    public function UpdateCart(Request $request, $cart_id)
     {
-        Cart::where('id', $id)->where('user_ip', request()->ip())->Update([
+        // dd($request->all());
+        Cart::where('id', $cart_id)->where('user_ip', request()->ip())->Update([
             'product_qty' => $request->product_qty,
         ]);
         return Redirect()->back();
     }
+
 
 
 }

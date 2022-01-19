@@ -22,37 +22,24 @@
                         </form>
                     </div>
 
+                    @php
+                        $products=App\Product::where('status',1)->latest()->limit(5)->get();
+                    @endphp
+
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Products</h2>
+                         @foreach ($products as $product)
                         <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                            <img src="{{asset($product->image_one)}}" class="recent-thumb" alt="">
+                            <h2><a href="{{url('product/item/details/'.$product->id)}}">{{$product->product_name}}</a></h2>
                             <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
+                                <ins>price {{$product->price}} tk</ins>
                             </div>
                         </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>
-                        </div>
-                        <div class="thubmnail-recent">
-                            <img src="img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                            <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
-                            <div class="product-sidebar-price">
-                                <ins>$700.00</ins> <del>$800.00</del>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
+
+
 
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
@@ -69,7 +56,7 @@
                 <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-                            <form method="post" action="#">
+
                                 <table cellspacing="0" class="shop_table cart">
                                     <thead>
                                         <tr>
@@ -103,18 +90,21 @@
                                             </td>
 
                                             <td class="product-quantity">
-
                                                 <div class="quantity buttons_added">
-                                                    <form action="{{url('cart/quantity/update/'.$cart->id)}}" method="POST">
-                                                        @csrf
+                                                    {{-- @php
+                                                        dd($cart->id);
+                                                    @endphp --}}
+                                                    <form action="{{route('carts.update',$cart->id)}}" method="POST">
+                                                    @csrf
+                                                    {{-- @method('PUT') --}}
+                                                    {{-- {{route('carts.update',$cart->id)}} --}}
+                                                        <input type="number" size="4" class="input-text qty text" min='1' value={{$cart->product_qty}} name="product_qty">
 
-                                                    <input type="number" size="4" class="input-text qty text"  step="1" min='1' id="submit" value={{$cart->product_qty}} name="product_qty">
+                                                        {{-- <input type="button" class="minus" value="-"> --}}
 
-                                                    {{-- <input type="button" class="minus" value="-"> --}}
-
-                                                    {{-- <input type="button" class="plus" value="+"> --}}
-                                                    <button type="submit" class="btn btn-sm">Update</button>
-                                                </form>
+                                                        {{-- <input type="button" class="plus" value="+"> --}}
+                                                        <button type="submit" class="btn btn-sm">Update</button>
+                                                    </form>
                                                 </div>
 
 
@@ -127,19 +117,22 @@
                                         @endforeach
                                         <tr>
                                             <td class="actions" colspan="6">
-                                                <div class="coupon">
-                                                    <label for="coupon_code">Coupon:</label>
-                                                    <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_code">
-                                                    <input type="submit" value="Apply Coupon" name="apply_coupon" class="button">
-                                                </div>
-                                                <button type="submit">update cart</button>
-                                                <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+                                                <form action="{{route('coupon.add')}}" method="get">
+                                                    <div class="coupon">
+                                                        <label for="coupon_code">Coupon:</label>
+                                                        <input type="text" placeholder="Coupon code" value="" id="coupon_code" class="input-text" name="coupon_name">
+                                                        <button type="submit" class="site-btn">APPLY COUPON</button>
+                                                    </div>
+                                                </form>
+                                                    {{-- <button type="submit">update cart</button> --}}
+
+                                                    <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
 
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </form>
+
 
                             <div class="cart-collaterals">
 
@@ -183,9 +176,15 @@
 
                                 <table cellspacing="0">
                                     <tbody>
+                                        @if (Session::has('coupon'))
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
-                                            <td><span class="amount">{{$sub_total}}tk</span></td>
+                                            <td><span class="amount">{{$sub_total}} tk</span></td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Discount ({{Session()->get('coupon')['coupon_name']}})</th>
+                                            <td> {{$discount=$sub_total*session()->get('coupon')['discount']/100}} tk <a href="{{url('coupon/destroy')}}"><i class="fa fa-times"></i></a></td>
                                         </tr>
 
                                         <tr class="shipping">
@@ -195,8 +194,25 @@
 
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount">£15.00</span></strong> </td>
+                                            <td><strong><span class="amount">{{$sub_total - $discount}} tk</span></strong> </td>
                                         </tr>
+                                        @else
+                                        <tr class="cart-subtotal">
+                                            <th>Cart Subtotal</th>
+                                            <td><span class="amount">{{$sub_total}} tk</span></td>
+                                        </tr>
+
+                                        <tr class="shipping">
+                                            <th>Shipping and Handling</th>
+                                            <td>Free Shipping</td>
+                                        </tr>
+
+                                        <tr class="order-total">
+                                            <th>Order Total</th>
+                                            <td><strong><span class="amount">{{$sub_total}} tk</span></strong> </td>
+                                        </tr>
+                                        @endif
+
                                     </tbody>
                                 </table>
                             </div>

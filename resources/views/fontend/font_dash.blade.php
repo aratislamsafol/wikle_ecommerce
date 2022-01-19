@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Winkle Ecommerce</title>
 
     <!-- Google Fonts -->
@@ -81,21 +82,20 @@
         </div>
     </div> <!-- End header area -->
 
-    @if (session('success'))
+    {{-- @if (session('success'))
     'success';
-    {{-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{{session('success')}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div> --}}
-    @endif
+    </div>
 
     @if (session('fail'))
     'fail';
-    {{-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong>{{session('success')}}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div> --}}
-    @endif
+    </div>
+    @endif --}}
 
     <div class="site-branding-area">
         <div class="container">
@@ -218,12 +218,6 @@
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="copyright">
-                        <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
-                    </div>
-                </div>
-
                 <div class="col-md-4">
                     <div class="footer-card-icon">
                         <i class="fa fa-cc-discover"></i>
@@ -241,6 +235,8 @@
 
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    {{-- @include('fontend.inc.cart_scripts'); --}}
 
     <!-- jQuery sticky menu -->
     <script src="{{asset('frontend')}}/js/owl.carousel.min.js"></script>
@@ -270,6 +266,8 @@
       })
     }
     </script>
+
+
 
     <!-- Slider -->
     <script type="text/javascript" src="{{asset('frontend')}}/js/bxslider.min.js"></script>

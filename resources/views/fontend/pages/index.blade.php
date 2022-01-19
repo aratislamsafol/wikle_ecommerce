@@ -13,7 +13,7 @@
                         {{$pro->product_name}} <span class="primary">6 <strong>Plus</strong></span>
                     </h2>
                     <h4 class="caption subtitle">{{$pro->short_description}}</h4>
-                    <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
+                    <a class="caption button-radius" href="{{route('shop.product')}}"><span class="icon"></span>Shop now</a>
                 </div>
             </li>
             @endforeach

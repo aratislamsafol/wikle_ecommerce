@@ -33,6 +33,13 @@ class UserController extends Controller
         return view('fontend.pages.single_product',compact('product_details','pro_get','related_pro'));
     }
 
+    // ======================SHOP Page==============================
+    public function ShowAllProductsss(){
+        $all_product=Product::where('status',1)->latest()->paginate(12);
+        return view('fontend.pages.shop',compact('all_product'));
+    }
+
+
 
     // public function
 

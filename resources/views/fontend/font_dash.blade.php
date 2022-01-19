@@ -47,8 +47,8 @@
                     <div class="user-menu">
                         <ul>
                             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
+                            <li><a href="{{route('wishlist.index')}}"><i class="fa fa-heart"></i> Wishlist</a></li>
+                            <li><a href="{{route('cart.page')}}"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
@@ -102,7 +102,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="logo">
-                        <h1><a href="./"><img src="{{asset('frontend')}}/img/logo.png"></a></h1>
+                        <h1><a href="{{url('/')}}"><img src="{{asset('frontend')}}/img/logo.png"></a></h1>
                     </div>
                 </div>
 
@@ -139,7 +139,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="@yield('index')"><a href="{{url('/')}}">Home</a></li>
-                        <li><a href="shop.html">Shop page</a></li>
+                        <li><a href="{{route('shop.product')}}">Shop page</a></li>
                         {{-- <li><a class="@yield('product_details')" href="{{route('product.details')}}">Single product</a></li> --}}
                         <li><a class="@yield('cart')" href="{{route('cart.page')}}">Cart</a></li>
                         <li><a href="checkout.html">Checkout</a></li>

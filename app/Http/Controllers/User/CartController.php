@@ -26,7 +26,7 @@ class CartController extends Controller
         }else{
             Cart::insert([
                 'product_id'=>$id,
-                'product_qty'=>$request->qty,
+                'product_qty'=>1,
                 'price'=>$request->price,
                 'user_ip'=>request()->ip(),
             ]);

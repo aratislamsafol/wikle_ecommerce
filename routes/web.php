@@ -113,6 +113,16 @@ Route::get('coupon/name','User\CouponController@ApplyCoupon')->name('coupon.add'
 Route::get('coupon/destroy','User\CouponController@CouponDestroy')->name('coupon.destroy');
 
 // WishList
-Route::get('')->name('add.wishlist');
+Route::group(['prefix'=>'wishlist'],function(){
+    Route::get('index','User\WishlistController@index')->name('wishlist.index');
+    Route::get('add/{id}','User\WishlistController@AddWishlist')->name('add.wishlist');
+    Route::get('remove/wishlist/{id}','User\WishlistController@Remove')->name('remove.wishlist');
+});
+
+// Shop Page
+Route::group(['prefix'=>'shop'],function(){
+    Route::get('product/show','User\UserController@ShowAllProductsss')->name('shop.product');
+});
+
 
 

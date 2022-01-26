@@ -6,6 +6,7 @@
 	URL: https://www.freshdesignweb.com/ustora/
 -->
 <html lang="en">
+    {{-- <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> --}}
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,6 +21,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{asset('frontend')}}/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" /> --}}
 
 
     <!-- Font Awesome -->
@@ -49,7 +51,7 @@
                             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="{{route('wishlist.index')}}"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="{{route('cart.page')}}"><i class="fa fa-user"></i> My Cart</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
+                            <li><a href="{{route('checkout.page')}}"><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="{{route('login')}}"><i class="fa fa-user"></i> Login</a></li>
                         </ul>
                     </div>
@@ -142,7 +144,7 @@
                         <li><a href="{{route('shop.product')}}">Shop page</a></li>
                         {{-- <li><a class="@yield('product_details')" href="{{route('product.details')}}">Single product</a></li> --}}
                         <li><a class="@yield('cart')" href="{{route('cart.page')}}">Cart</a></li>
-                        <li><a href="checkout.html">Checkout</a></li>
+                        <li><a href="{{route('checkout.page')}}">Checkout</a></li>
                         <li><a class="@yield('category')" href="{{route('category.page')}}">Category</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li>
@@ -232,6 +234,17 @@
 
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
+
+    {{-- <script type="text/javascript">
+        var path = "{{ route('autocomplete') }}";
+        $('input.typeahead').typeahead({
+            source:  function (query, process) {
+            return $.get(path, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+    </script> --}}
 
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

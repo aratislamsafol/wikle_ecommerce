@@ -43,12 +43,15 @@
 
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Recent Posts</h2>
+                        @php
+                            $product_details=App\Product::where('status',1)->latest()->limit(5)->get()
+                        @endphp
                         <ul>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
-                            <li><a href="#">Sony Smart TV - 2015</a></li>
+
+                            @foreach ($product_details as $col)
+                            <li><a href="{{url('product/item/details/'.$col->id)}}">{{$col->product_name}}</a></li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -123,7 +126,9 @@
                                                 </form>
                                                     {{-- <button type="submit">update cart</button> --}}
 
-                                                    <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
+                                                    <a value="Checkout"  class="site-btn" href="{{route('checkout.page')}}">Checkout</a>
+{{--
+                                                    <input type="submit" value="Checkout" href="{{route('checkout.page')}}" name="proceed" class="checkout-button button alt wc-forward"> --}}
 
                                             </td>
                                         </tr>

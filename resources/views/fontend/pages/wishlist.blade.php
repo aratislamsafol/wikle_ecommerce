@@ -16,10 +16,9 @@
                 <div class="col-md-4">
                     <div class="single-sidebar">
                         <h2 class="sidebar-title">Search Products</h2>
-                        <form action="#">
-                            <input type="text" placeholder="Search products...">
-                            <input type="submit" value="Search">
-                        </form>
+                        <div class="form-group">
+                            <input type="search"onkeyup="search()" class="form-control" id="search">
+                        </div>
                     </div>
 
                     @php
@@ -37,7 +36,7 @@
                             </div>
                         </div>
                         @endforeach
-                    </div>
+                    </div>`
 
 
 
@@ -112,21 +111,6 @@
                                     <h2>You may be interested in...</h2>
                                     <ul class="products">
 
-                                        {{-- @php
-                                            $cart_data=App\Cart::where('user_ip',request()->ip())->get();
-
-                                            $product=App\Product::where('status',1)->where('id',$cart_data->product_id)->latest()->get();
-
-                                            $show_data=App\Category::where('status',1)->where('id',$product->category_id)->latest()->get();
-
-                                            // $product_data=App\Product::where('category_id',$show_data->id)->latest()->get();
-                                        @endphp
-
-                                        @foreach ($show_data as $sd)
-
-                                        {{asset($sd->product->image_one)}}
-                                        {{$sd->product->product_name}}--}}
-                                        {{-- @foreach ($carts->product->category->product->product_name as $sd) --}}
 
                                         <li class="product">
                                             <a href="">
@@ -135,7 +119,7 @@
                                                 <span class="price"><span class="amount">12</span></span>
                                             </a>
                                         </li>
-                                        {{-- @endforeach --}}
+
                                     </ul>
                                 </div>
 
@@ -148,4 +132,7 @@
     </div>
 
 
+
+
 @endsection
+

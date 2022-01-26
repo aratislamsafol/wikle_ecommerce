@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Product;
 use App\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,4 +34,23 @@ class WishlistController extends Controller
 
         return Redirect()->back();
     }
+
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function searchlive(Request $request_val)
+{
+$search_val = $request_val->id;
+if (is_null($search_val))
+{
+return view('demos.searchlive');
+}
+else
+{
+$posts_data = Post::where('title','LIKE',"%{$search_val}%")->get();
+return view('demos.searchLiveajax')->withPosts($posts_data);
+}
+}
 }

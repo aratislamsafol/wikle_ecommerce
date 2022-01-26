@@ -117,12 +117,17 @@ Route::group(['prefix'=>'wishlist'],function(){
     Route::get('index','User\WishlistController@index')->name('wishlist.index');
     Route::get('add/{id}','User\WishlistController@AddWishlist')->name('add.wishlist');
     Route::get('remove/wishlist/{id}','User\WishlistController@Remove')->name('remove.wishlist');
+    Route::get('demos/searchLive','User\WishlistController@searchLive');
 });
 
 // Shop Page
 Route::group(['prefix'=>'shop'],function(){
     Route::get('product/show','User\UserController@ShowAllProductsss')->name('shop.product');
 });
+
+//Checkout
+Route::get('checkout','User\CheckoutController@Index')->name('checkout.page');
+Route::post('checkout/place_order','OrderController@StoreOrder')->name('checkout_payment');
 
 
 

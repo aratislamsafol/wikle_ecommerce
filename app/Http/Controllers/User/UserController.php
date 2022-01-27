@@ -7,8 +7,12 @@ use App\Category;
 
 use App\Http\Controllers\Controller;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
@@ -46,5 +50,29 @@ class UserController extends Controller
     public function Logout(){
         Auth::logout();
         return Redirect()->route('user.dashboard');
+    }
+
+    public function UserProfile(){
+        $profile=User::where('id',Auth::id())->get();
+
+        return view('fontend.pages.profile.index',compact('profile'));
+    }
+
+    public function Edit($id){
+
+        $user_id=User::find($id);
+
+        return view('fontend.pages.profile.update',compact('user_id'));
+    }
+
+    public function UserProfileUpdate(Request $request,$id){
+         User::find($id)->updated([
+            'f_name' => $request->f_name,
+            'l_name' => $request->l_name,
+            'phone_number' => $request->phone_number,
+            'street_address' => $request->street_address,
+        ]);
+
+        return Redirect()->back();
     }
 }

@@ -233,23 +233,17 @@
 
                                 <div id="payment">
                                     <ul class="payment_methods methods">
-                                        <li class="payment_method_bacs">
-                                            <input type="radio" data-order_button_text="" checked="checked" value="bacs" name="payment_type" class="input-radio" id="payment_method_bacs">
-                                            <label for="payment_method_bacs">Direct Bank Transfer </label>
-                                            <div class="payment_box payment_method_bacs">
-                                                <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                            </div>
-                                        </li>
+
                                         <li class="payment_method_cheque">
                                             <input type="radio" data-order_button_text="" value="hand_cash_delivery" name="payment_type" class="input-radio" id="payment_method_cheque">
                                             <label for="payment_method_cheque">Hand Cash Delivery </label>
-
                                         </li>
-                                        <li class="payment_method_paypal">
-                                            <input type="radio" data-order_button_text="Proceed to PayPal" value="paypal" name="payment_type" class="input-radio" id="payment_method_paypal">
 
-                                        <label for="payment_method_cheque">SSl Commerze</label>
+                                        <li class="payment_method_cheque">
+                                            <input type="radio" data-order_button_text="" value="ssl_commerze" name="payment_type" class="input-radio" id="payment_method_cheque">
+                                            <label for="payment_method_cheque">SSL Commmerze </label>
                                         </li>
+
                                     </ul>
 
                                     <div class="form-row place-order">

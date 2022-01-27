@@ -7,9 +7,10 @@ use App\Order;
 use App\OrederItems;
 use App\Shipping;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+
 
 class OrderController extends Controller
 {
@@ -54,21 +55,28 @@ class OrderController extends Controller
             ]);
         }
 
-        Shipping::insert([
-            'order_id'=>$order_id,
-            'shipping_first_name'=>$request->shipping_first_name,
-            'shipping_last_name'=>$request->shipping_last_name,
-            'shipping_email'=>$request->shipping_email,
-            'shipping_phone'=>$request->shipping_phone,
-            'division_id'=>$request->division_id,
-            'distric_id'=>$request->distric_id,
-            'shipping_state'=>$request->shipping_state,
-            'post_code'=>$request->post_code,
-            'created_at'=>Carbon::now(),
-        ]);
+        return view('fontend.pages.payment.easycheckout',compact('data'));
+    }
 
+    public function ShippingData(Request $request,$id){
+// Shipping::insert([
+    $data=array();
+    $data['order_id']=$order_id;
+    $data['shipping_first_name']=$request->shipping_first_name;
+    $data['shipping_last_name']=$request->shipping_last_name;
+    $data['shipping_email']=$request->shipping_email;
+    $data['shipping_phone']=$request->shipping_phone;
+    $data['division_id']=$request->division_id;
+    $data['distric_id']=$request->distric_id;
+    $data['shipping_state']=$request->shipping_state;
+    $data['post_code']=$request->post_code;
+    $data['created_at']=Carbon::now();
+// ]);
 
+if(Session::has('coupon')){
+    Session::forget('coupon');
+}
 
-        return Redirect()->back();
+Cart::where('user_ip',request()->ip())->delete();
     }
 }

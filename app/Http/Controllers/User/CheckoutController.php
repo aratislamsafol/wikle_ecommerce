@@ -15,4 +15,9 @@ class CheckoutController extends Controller
             return Redirect()->route('login');
         }
     }
+
+    // public function OrderComplete(){
+
+    //     return view('fontend.pages.payment.easycheckout');
+    // }
 }

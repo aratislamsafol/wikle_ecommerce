@@ -125,9 +125,33 @@ Route::group(['prefix'=>'shop'],function(){
     Route::get('product/show','User\UserController@ShowAllProductsss')->name('shop.product');
 });
 
+// My profile
+Route::get('myprofile/show','User\UserController@UserProfile')->name('profile');
+Route::get('profile/edit/{id}','User\UserController@Edit')->name('update.profile');
+Route::post('update/user/profile/{id}','User\UserController@UserProfileUpdate');
+
 //Checkout
 Route::get('checkout','User\CheckoutController@Index')->name('checkout.page');
 Route::post('checkout/place_order','OrderController@StoreOrder')->name('checkout_payment');
+
+
+
+// Order Confirmation Message
+// Route::get('order/sslcommerze','User\CheckoutController@OrderComplete');
+
+// SSLCOMMERZ Start
+Route::get('/example1', 'SslCommerzPaymentController@exampleEasyCheckout');
+Route::get('/example2', 'SslCommerzPaymentController@exampleHostedCheckout');
+
+Route::post('/pay', 'SslCommerzPaymentController@index');
+Route::post('/pay-via-ajax', 'SslCommerzPaymentController@payViaAjax');
+
+Route::post('/success', 'SslCommerzPaymentController@success');
+Route::post('/fail', 'SslCommerzPaymentController@fail');
+Route::post('/cancel', 'SslCommerzPaymentController@cancel');
+
+Route::post('/ipn', 'SslCommerzPaymentController@ipn');
+//SSLCOMMERZ END
 
 
 

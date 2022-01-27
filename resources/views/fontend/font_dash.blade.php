@@ -48,7 +48,7 @@
                 <div class="col-md-8">
                     <div class="user-menu">
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
+                            <li><a href="{{route('profile')}}"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="{{route('wishlist.index')}}"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="{{route('cart.page')}}"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="{{route('checkout.page')}}"><i class="fa fa-user"></i> Checkout</a></li>
